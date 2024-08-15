@@ -17,7 +17,7 @@ from detection_msgs.msg import BoundingBox, BoundingBoxes
 
 # add yolov5 submodule to path
 FILE = Path(__file__).resolve()
-ROOT = FILE.parents[0] / "yolov5"
+ROOT = FILE.parents[2] / "yolov5"
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative path
@@ -28,7 +28,7 @@ from utils.general import (
     check_img_size,
     check_requirements,
     non_max_suppression,
-    scale_coords
+    scale_boxes
 )
 from utils.plots import Annotator, colors
 from utils.torch_utils import select_device
@@ -138,7 +138,7 @@ class Yolov5Detector:
         annotator = Annotator(im0, line_width=self.line_thickness, example=str(self.names))
         if len(det):
             # Rescale boxes from img_size to im0 size
-            det[:, :4] = scale_coords(im.shape[2:], det[:, :4], im0.shape).round()
+            det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()
 
             # Write results
             for *xyxy, conf, cls in reversed(det):

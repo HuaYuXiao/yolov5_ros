@@ -1,0 +1,23 @@
+# Ultralytics YOLOv5 🚀, AGPL-3.0 license
+# COCO 2017 dataset http://cocodataset.org by Microsoft
+# Example usage: python train.py --data coco.yaml
+# parent
+# ├── yolov5
+# └── datasets
+#     └── coco  ← downloads here (20.1 GB)
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../CUADC.v8i.yolov5pytorch # dataset root dir
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 2
+names: ['cylinder_bucket', 'landing_pad']
+
+roboflow:
+  workspace: easonhua
+  project: cuadc
+  version: 8
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/easonhua/cuadc/dataset/8
